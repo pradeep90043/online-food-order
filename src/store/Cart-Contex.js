@@ -6,4 +6,4 @@ const cartContex = createContext({
     addItem: (item)=> {},
     removeItem: (id) => {}
 })
-export default cartContex
+export default cartContex 
