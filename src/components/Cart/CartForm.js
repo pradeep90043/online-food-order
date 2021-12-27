@@ -21,6 +21,7 @@ const CartForm = (props) => {
   console.log(inputData);
 
   const submitHAndler = async (e) => {
+    props.onClose()
     e.preventDefault();
     const response = await fetch(
       "https://food-form-default-rtdb.firebaseio.com/foodform.json",
@@ -35,7 +36,6 @@ const CartForm = (props) => {
     const data = await response.json();
     console.log(data);
     cartCtx.showMsg();
-    props.onClose()
   };
 
   return (
