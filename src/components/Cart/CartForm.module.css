@@ -1,21 +1,17 @@
-.cart-items {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    max-height: 14rem;
-    overflow:scroll;
-  }
-  
-  .total {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    font-size: 1.5rem;
-    margin: 1rem 0;
-  }
-  
-  .actions {
+.form {
+  width: 100%;
+  font-size: 13px;
+}
+.labelInput {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+input{
+    padding: 4px;
+}
+
+.actions {
     text-align: right;
   }
   

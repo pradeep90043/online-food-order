@@ -4,6 +4,7 @@ import cartContex from "./Cart-Contex";
 const defaultCartState = {
   items: [],
   totalAmount: 0,
+  orderedmsg: "",
 };
 
 const cartReducer = (state, action) => {
@@ -59,6 +60,11 @@ const cartReducer = (state, action) => {
     };
   }
 
+  if (action.type === "ORDERED") {
+    state.orderedmsg = "your order has been taken in account successfully !";
+    return state;
+  }
+
   return defaultCartState;
 };
 
@@ -76,11 +82,17 @@ const CartContexProvider = (props) => {
     dispatchCartAction({ type: "REMOVE", id: id });
   };
 
+  const orderSuccesfull = () => {
+    dispatchCartAction({ type: "ORDERED" });
+  };
+
   const context = {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
     addItem: addItemsHandler,
     removeItem: removeItemshandler,
+    orderedmsg: cartState.orderedmsg,
+    showMsg: orderSuccesfull,
   };
 
   return (

@@ -17,7 +17,7 @@ const hideCartHAndler = () => {
 
   return (
     <CartContexProvider>
-      <Header onClick= {showCartHandler} />
+      <Header onClick= {showCartHandler}  />
       {showCart && <Cart onClose = {hideCartHAndler} />}
       <main>
         <Meals />
