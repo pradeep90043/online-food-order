@@ -5,7 +5,7 @@ const cartContex = createContext({
   totalAmount: 0,
   addItem: (item) => {},
   removeItem: (id) => {},
-  showMsg: () => {},
+  showMsg: (message) => {},
   orderedmsg: "",
 });
 export default cartContex;

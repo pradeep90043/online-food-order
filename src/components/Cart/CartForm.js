@@ -5,12 +5,7 @@ import classes from "./CartForm.module.css";
 const CartForm = (props) => {
   const cartCtx = useContext(cartContex);
 
-  const [inputData, setInputData] = useState({
-    name: "",
-    street: "",
-    postal_code: "",
-    city: "",
-  });
+  const [inputData, setInputData] = useState({});
 
   const inputEvent = (event) => {
     const { name, value } = event.target;
@@ -21,7 +16,6 @@ const CartForm = (props) => {
   console.log(inputData);
 
   const submitHAndler = async (e) => {
-    props.onClose()
     e.preventDefault();
     const response = await fetch(
       "https://food-form-default-rtdb.firebaseio.com/foodform.json",
@@ -33,9 +27,11 @@ const CartForm = (props) => {
         },
       }
     );
+    // props.onClose()
     const data = await response.json();
     console.log(data);
-    cartCtx.showMsg();
+    cartCtx.showMsg("Your order has been taken succesfully");
+    props.onClose();
   };
 
   return (
@@ -77,10 +73,10 @@ const CartForm = (props) => {
         />
       </div>
       <div className={classes.actions}>
-        <button type="button">
+        <button type="button" onClick={() => props.setShowForm(false)}>
           Cancel
         </button>
-        <button type="submit" >Confirm</button>
+        <button>Confirm</button>
       </div>
     </form>
   );

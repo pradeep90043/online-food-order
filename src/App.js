@@ -1,28 +1,30 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./App.css";
 import Cart from "./components/Cart/Cart";
 import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
-import CartContexProvider from "./store/CartContexProvider";
+import cartContex from "./store/Cart-Contex";
 
 function App() {
-const [ showCart, setShowCart ] = useState(false)
+  const [showCart, setShowCart] = useState(false);
+  const cartCtx = useContext(cartContex);
 
-const showCartHandler = ( ) => {
-  setShowCart(true)
-}
-const hideCartHAndler = () => {
-  setShowCart(false)
-}
+  const showCartHandler = () => {
+    cartCtx.showMsg("");
+    setShowCart(true);
+  };
+  const hideCartHAndler = () => {
+    setShowCart(false);
+  };
 
   return (
-    <CartContexProvider>
-      <Header onClick= {showCartHandler}  />
-      {showCart && <Cart onClose = {hideCartHAndler} />}
+    <>
+      <Header onClick={showCartHandler} />
+      {showCart && <Cart onClose={hideCartHAndler} />}
       <main>
         <Meals />
       </main>
-    </CartContexProvider>
+    </>
   );
 }
 

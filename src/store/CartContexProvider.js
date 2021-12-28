@@ -30,6 +30,7 @@ const cartReducer = (state, action) => {
     const updatedTotalAmount =
       state.totalAmount + action.item.price * action.item.amount;
     return {
+      ...state,
       items: updatedItems,
       totalAmount: updatedTotalAmount,
     };
@@ -55,14 +56,14 @@ const cartReducer = (state, action) => {
     }
 
     return {
+      ...state,
       items: updatedItems,
       totalAmount: updatedTotalAmount,
     };
   }
 
   if (action.type === "ORDERED") {
-    state.orderedmsg = "your order has been taken in account successfully !";
-    return state;
+    return { ...state, orderedmsg: action.message };
   }
 
   return defaultCartState;
@@ -82,8 +83,8 @@ const CartContexProvider = (props) => {
     dispatchCartAction({ type: "REMOVE", id: id });
   };
 
-  const orderSuccesfull = () => {
-    dispatchCartAction({ type: "ORDERED" });
+  const orderSuccesfull = (message = "") => {
+    dispatchCartAction({ type: "ORDERED", message });
   };
 
   const context = {

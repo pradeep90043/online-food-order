@@ -31,37 +31,59 @@ import MealItem from "./MealItems/MealItem";
 // ];
 
 const AvailableMeals = () => {
-  const [meals, setMeals] = useState([])
+  const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState();
   useEffect(() => {
-
     const fetchMeal = async () => {
       const response = await fetch(
-        "https://food-order-e8fa2-default-rtdb.firebaseio.com/meals.json"
+        "https://food-order-e8fa2-default-rtdb.fiffffhgfrebaseio.com/meal.json"
       );
+      console.log(response, "rees");
+      if (!response.ok) {
+        throw new Error("something went wrong");
+      }
+
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
 
-      const loadedData = []
+      const loadedData = [];
 
-      for(const key in data){
+      for (const key in data) {
         loadedData.push({
-          id:key,
-          name:data[key].name,
-          description:data[key].description,
-          price:data[key].price
-        }
-        )
-        
+          id: key,
+          name: data[key].name,
+          description: data[key].description,
+          price: data[key].price,
+        });
       }
       console.log(loadedData);
-      setMeals(loadedData)
+      setMeals(loadedData);
+      setIsLoading(false);
     };
-    fetchMeal()
-
-
+    fetchMeal().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
   }, []);
- 
-console.log(meals);
+  if (httpError) {
+    return (
+      <section className={classes.httpError}>
+        <p>{httpError}</p>
+      </section>
+    );
+  }
+  console.log(httpError);
+
+  if (isLoading) {
+    return (
+      <section className={classes.isLoading}>
+        <p> loading...</p>
+      </section>
+    );
+  }
+
+  console.log(meals);
   const mealList = meals.map((meal) => {
     return (
       <div key={meal.id}>

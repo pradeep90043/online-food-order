@@ -52,7 +52,7 @@ const Cart = (props) => {
         </button>
         {hasItems && !showForm && <button className={classes.button} onClick={()=>setShowForm(true)} >Order</button>}
       </div>
-      { showForm && <CartForm onClose={props.onClose} />}
+      { showForm && <CartForm onClose={props.onClose} setShowForm = {setShowForm} />}
     </Modal>
   );
 };

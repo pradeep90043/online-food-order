@@ -22,3 +22,11 @@
       transform: translateY(0);
     }
   }
+  .isLoading{
+    color: white;
+    text-align: center;
+  }
+  .httpError{
+    color: red;
+    text-align: center;
+  }

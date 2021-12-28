@@ -10,7 +10,9 @@ const Header = (props) => {
   console.log(cartCtx);
   return (
     <Fragment>
-      <p className="ordered">{cartCtx.orderedmsg}</p>
+      <p className={cartCtx.orderedmsg ? "ordered" : ""}>
+        {cartCtx.orderedmsg}
+      </p>
       <header className={classes.header}>
         <h1>ReactMeals</h1>
         <HeaderCartButton onClick={props.onClick} />
