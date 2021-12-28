@@ -27,7 +27,6 @@ const CartForm = (props) => {
         },
       }
     );
-    // props.onClose()
     const data = await response.json();
     console.log(data);
     cartCtx.showMsg("Your order has been taken succesfully");
@@ -43,6 +42,7 @@ const CartForm = (props) => {
           name="name"
           value={inputData.name}
           onChange={inputEvent}
+          required
         />
       </div>
       <div className={classes.labelInput}>
@@ -52,6 +52,7 @@ const CartForm = (props) => {
           name="street"
           value={inputData.street}
           onChange={inputEvent}
+          required
         />
       </div>
       <div className={classes.labelInput}>
@@ -61,6 +62,7 @@ const CartForm = (props) => {
           name="postal_code"
           value={inputData.postal_code}
           onChange={inputEvent}
+          required
         />
       </div>
       <div className={classes.labelInput}>
@@ -70,6 +72,7 @@ const CartForm = (props) => {
           name="city"
           value={inputData.city}
           onChange={inputEvent}
+          required
         />
       </div>
       <div className={classes.actions}>
