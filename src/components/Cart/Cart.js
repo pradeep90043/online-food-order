@@ -13,11 +13,7 @@ const Cart = (props) => {
   const hasItems = cartCtx.items.length > 0;
 
 
-  const totalprices = cartCtx.items.reduce((sum, curEl) => {
-    console.log(sum + curEl);
-    return sum + curEl.price * curEl.amount;
-  }, 0);
-  console.log(totalprices);
+  
 
   const addHandler = (item) => cartCtx.addItem({ ...item, amount: 1 });
 

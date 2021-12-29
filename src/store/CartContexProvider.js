@@ -66,6 +66,13 @@ const cartReducer = (state, action) => {
     return { ...state, orderedmsg: action.message };
   }
 
+  if(action.type === "CLEAR"){
+    return {
+      ...state,
+      items:[],
+      totalAmount:0
+    }
+  }
   return defaultCartState;
 };
 
@@ -87,6 +94,10 @@ const CartContexProvider = (props) => {
     dispatchCartAction({ type: "ORDERED", message });
   };
 
+const clearCartHandler = () => {
+  dispatchCartAction({type: "CLEAR"})
+}
+
   const context = {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
@@ -94,6 +105,7 @@ const CartContexProvider = (props) => {
     removeItem: removeItemshandler,
     orderedmsg: cartState.orderedmsg,
     showMsg: orderSuccesfull,
+    clearCart: clearCartHandler
   };
 
   return (

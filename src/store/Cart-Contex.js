@@ -7,5 +7,6 @@ const cartContex = createContext({
   removeItem: (id) => {},
   showMsg: (message) => {},
   orderedmsg: "",
+  clearCart : () => {}
 });
 export default cartContex;

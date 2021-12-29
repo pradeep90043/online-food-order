@@ -6,6 +6,7 @@ const CartForm = (props) => {
   const cartCtx = useContext(cartContex);
 
   const [inputData, setInputData] = useState({});
+  
 
   const inputEvent = (event) => {
     const { name, value } = event.target;
@@ -31,6 +32,10 @@ const CartForm = (props) => {
     console.log(data);
     cartCtx.showMsg("Your order has been taken succesfully");
     props.onClose();
+    // cartCtx.items([])
+    // cartCtx.totalAmount(0)
+    // cartCtx.addItem("")
+    cartCtx.clearCart()
   };
 
   return (
